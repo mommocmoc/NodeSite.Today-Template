@@ -1,0 +1,203 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 6rem 2rem 4rem;
+  min-height: 100vh;
+  background-color: var(--gallery-bg);
+  color: var(--gallery-text);
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.loadingSpinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--gallery-border);
+  border-top: 3px solid var(--gallery-text);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error,
+.notFound {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--gallery-text-secondary);
+}
+
+.error h1,
+.notFound h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--gallery-text);
+}
+
+.verticalStack {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pageSection {
+  background: var(--gallery-bg);
+  color: var(--gallery-text);
+}
+
+.pageDivider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gallery-border), transparent);
+  margin: 3rem 0;
+  opacity: 0.5;
+}
+
+.notionWrapper {
+  background: var(--gallery-bg);
+  color: var(--gallery-text);
+}
+
+.notionRenderer {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* 노션 렌더러 스타일 재정의 */
+.notionWrapper :global(.notion-page) {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  color: var(--gallery-text);
+}
+
+.notionWrapper :global(.notion-title) {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 2rem 0;
+  color: var(--gallery-text);
+  letter-spacing: -0.025em;
+}
+
+.notionWrapper :global(.notion-text) {
+  line-height: 1.7;
+  font-size: 1.1rem;
+  color: var(--gallery-text);
+}
+
+.notionWrapper :global(.notion-h1) {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem 0;
+  color: var(--gallery-text);
+}
+
+.notionWrapper :global(.notion-h2) {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem 0;
+  color: var(--gallery-text);
+}
+
+.notionWrapper :global(.notion-h3) {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1.25rem 0 0.5rem 0;
+  color: var(--gallery-text);
+}
+
+.notionWrapper :global(.notion-list) {
+  margin: 1rem 0;
+}
+
+.notionWrapper :global(.notion-list-item) {
+  color: var(--gallery-text);
+  line-height: 1.6;
+}
+
+.notionWrapper :global(.notion-quote) {
+  border-left: 4px solid var(--gallery-text-secondary);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: var(--gallery-text-secondary);
+  font-style: italic;
+}
+
+.notionWrapper :global(.notion-callout) {
+  background: var(--gallery-hover);
+  border: 1px solid var(--gallery-border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+}
+
+.notionWrapper :global(.notion-divider) {
+  border-color: var(--gallery-border);
+  margin: 2rem 0;
+}
+
+.notionWrapper :global(.notion-asset-wrapper) {
+  margin: 1.5rem 0;
+}
+
+.notionWrapper :global(.notion-image) {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.notionWrapper :global(.notion-page-icon) {
+  display: none;
+}
+
+.notionWrapper :global(.notion-page-cover) {
+  display: none;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .container {
+    padding: 4rem 1rem 2rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .content {
+    font-size: 1rem;
+  }
+  
+  .description {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 3rem 1rem 1.5rem;
+  }
+  
+  .title {
+    font-size: 1.75rem;
+  }
+  
+  .header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  .placeholder {
+    margin-top: 2rem;
+    padding: 1.5rem;
+  }
+}

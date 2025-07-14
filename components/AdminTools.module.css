@@ -1,0 +1,66 @@
+.adminTools {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.adminPanel {
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  min-width: 200px;
+  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:global(.dark-mode) .adminPanel {
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.adminPanel h3 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  color: #fff;
+}
+
+.refreshButton {
+  background: #0070f3;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 100%;
+  margin-bottom: 8px;
+  transition: background-color 0.2s;
+}
+
+.refreshButton:hover:not(:disabled) {
+  background: #0051cc;
+}
+
+.refreshButton:disabled {
+  background: #666;
+  cursor: not-allowed;
+}
+
+.message {
+  margin: 8px 0 0 0;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.hint {
+  margin: 8px 0 0 0;
+  font-size: 11px;
+  color: #ccc;
+  line-height: 1.4;
+}

@@ -1,0 +1,363 @@
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1.5rem;
+  padding: 5.8rem 2rem 2.9rem;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  align-items: end;
+  background-color: var(--gallery-bg);
+  color: var(--gallery-text);
+}
+
+.galleryItem {
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-self: start;
+  width: fit-content;
+  max-width: 100%;
+  min-width: 120px;
+}
+
+.galleryItem:hover {
+  transform: translateY(-1px);
+}
+
+/* 비율 기반 그리드 크기 */
+.small {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.medium {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.large {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.wide {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.tall {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 2px;
+  background: transparent;
+  margin-bottom: 0.75rem;
+}
+
+/* 기본 크기별 이미지 컨테이너 비율 조정 (동적으로 오버라이드됨) */
+.small .imageContainer {
+  aspect-ratio: 1;
+}
+
+.medium .imageContainer {
+  aspect-ratio: 1;
+}
+
+.large .imageContainer {
+  aspect-ratio: 1.5;
+}
+
+.wide .imageContainer {
+  aspect-ratio: 2;
+}
+
+.tall .imageContainer {
+  aspect-ratio: 0.67;
+}
+
+.image {
+  object-fit: contain;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  background: transparent;
+}
+
+.galleryItem:hover .image,
+.galleryItem:hover .video {
+  transform: scale(1.01);
+}
+
+.playIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.galleryItem:hover .playIcon {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: var(--gallery-hover);
+  color: var(--gallery-text-secondary);
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.caption {
+  padding: 0.5rem 0;
+  margin-top: auto;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  min-width: 120px;
+}
+
+.title {
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin: 0 0 0.125rem 0;
+  line-height: 1.3;
+  color: var(--gallery-text);
+  letter-spacing: -0.01em;
+}
+
+.date {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--gallery-text-secondary);
+  margin: 0 0 0.25rem 0;
+  line-height: 1.3;
+  opacity: 0.85;
+  letter-spacing: -0.005em;
+}
+
+.description {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--gallery-text-secondary);
+  margin: 0;
+  line-height: 1.4;
+  opacity: 0.75;
+  letter-spacing: -0.005em;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .galleryGrid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-auto-rows: 180px;
+  }
+  
+  .large, .wide {
+    grid-column: span 2;
+  }
+  
+  .tall {
+    grid-row: span 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .galleryGrid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-auto-rows: 150px;
+    gap: 0.75rem;
+    padding: 1.5rem;
+  }
+  
+  .large, .wide {
+    grid-column: span 2;
+  }
+  
+  .tall {
+    grid-row: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .galleryGrid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+  
+  /* 모바일에서는 모든 아이템을 1x1로 통일 */
+  .large, .wide, .tall {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  
+  /* 모바일에서 이미지 컨테이너 비율 통일 */
+  .small .imageContainer,
+  .medium .imageContainer,
+  .large .imageContainer,
+  .wide .imageContainer,
+  .tall .imageContainer {
+    aspect-ratio: 1;
+  }
+  
+  .title {
+    font-size: 0.8rem;
+  }
+  
+  .description {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .galleryGrid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.25rem;
+    padding: 0.5rem;
+  }
+  
+  /* 모바일에서 이미지 컨테이너 비율 통일 */
+  .small .imageContainer,
+  .medium .imageContainer,
+  .large .imageContainer,
+  .wide .imageContainer,
+  .tall .imageContainer {
+    aspect-ratio: 1;
+  }
+  
+  .title {
+    font-size: 0.75rem;
+  }
+  
+  .description {
+    font-size: 0.65rem;
+  }
+}
+
+
+.loadingState,
+.errorState,
+.emptyState {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  color: var(--gallery-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+.loadingState {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* 스켈레톤 로딩 상태 */
+.skeletonGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1.5rem;
+  padding: 5.8rem 2rem 2.9rem;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  align-items: end;
+}
+
+.skeletonItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: fit-content;
+  max-width: 100%;
+  min-width: 120px;
+}
+
+.skeletonImage {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  border-radius: 2px;
+  margin-bottom: 0.75rem;
+}
+
+.skeletonText {
+  height: 0.8rem;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  border-radius: 2px;
+  margin-bottom: 0.25rem;
+}
+
+.skeletonTitle {
+  width: 80%;
+}
+
+.skeletonDate {
+  width: 60%;
+  height: 0.7rem;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.dark-mode .skeletonImage,
+.dark-mode .skeletonText {
+  background: linear-gradient(90deg, #1a1a1a 25%, #333333 50%, #1a1a1a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.errorState {
+  color: #ef4444;
+}
+
+/* Dark mode support - variables are handled by CSS custom properties */
