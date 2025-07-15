@@ -68,6 +68,19 @@ export function OverlayNavigation({ site }: OverlayNavigationProps) {
           </Link>
           
           <div className={styles.navControls}>
+            {/* Desktop navigation items */}
+            <div className={styles.desktopNav}>
+              {!loading && navigationItems.slice(0, 3).map((item) => (
+                <Link
+                  key={item.id}
+                  href={item.urlPath}
+                  className={styles.desktopNavItem}
+                >
+                  {item.displayName}
+                </Link>
+              ))}
+            </div>
+            
             <DarkModeToggle size="medium" className={styles.darkModeToggle} />
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}

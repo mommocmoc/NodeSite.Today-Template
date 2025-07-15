@@ -38,12 +38,37 @@
   gap: 1rem;
 }
 
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.desktopNavItem {
+  font-size: 0.95rem;
+  color: var(--gallery-text);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.desktopNavItem:hover {
+  background: var(--gallery-hover);
+  color: var(--gallery-text);
+}
+
 .darkModeToggle {
   display: block;
 }
 
 @media (max-width: 768px) {
   .darkModeToggle {
+    display: none;
+  }
+  
+  .desktopNav {
     display: none;
   }
 }

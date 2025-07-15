@@ -1,7 +1,7 @@
 .container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 6rem 2rem 4rem;
+  padding: 8rem 2rem 4rem;
   min-height: 100vh;
   background-color: var(--gallery-bg);
   color: var(--gallery-text);
@@ -166,7 +166,7 @@
 /* 반응형 디자인 */
 @media (max-width: 768px) {
   .container {
-    padding: 4rem 1rem 2rem;
+    padding: 6rem 1rem 2rem;
   }
   
   .title {
@@ -184,7 +184,7 @@
 
 @media (max-width: 480px) {
   .container {
-    padding: 3rem 1rem 1.5rem;
+    padding: 5rem 1rem 1.5rem;
   }
   
   .title {
