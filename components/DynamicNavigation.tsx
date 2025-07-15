@@ -19,7 +19,7 @@ export function DynamicNavigation({ className }: DynamicNavigationProps) {
         // 캐시 무효화를 위한 타임스탬프 추가
         const timestamp = new Date().getTime()
         const response = await fetch(`/api/navigation?t=${timestamp}`)
-        const data = await response.json() as {
+        const data = (await response.json()) as {
           success: boolean
           items?: NavigationItem[]
           message?: string
@@ -32,7 +32,7 @@ export function DynamicNavigation({ className }: DynamicNavigationProps) {
           console.error('Failed to load navigation:', data.message)
           console.error('Navigation API Error Details:', data)
           setError(data.message || 'Failed to load navigation')
-          
+
           // 환경 변수 오류인 경우 기본 네비게이션 제공
           if (data.error === 'MISSING_NAVIGATION_DB_ID') {
             setNavigationItems([

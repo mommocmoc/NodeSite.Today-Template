@@ -12,7 +12,7 @@ export default async function handler(
   try {
     // Revalidate the index page and any dynamic pages
     await res.revalidate('/')
-    
+
     // Get page paths to revalidate from query parameter
     const paths = req.query.paths as string
     if (paths) {

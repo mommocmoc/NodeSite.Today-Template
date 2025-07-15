@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 1.5rem;
-  padding: 5.8rem 2rem 2.9rem;
+  padding: 7.5rem 2rem 2.9rem;
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
@@ -196,7 +196,7 @@
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     grid-auto-rows: 150px;
     gap: 0.75rem;
-    padding: 1.5rem;
+    padding: 6rem 1.5rem 2.9rem;
   }
   
   .large, .wide {
@@ -212,7 +212,7 @@
   .galleryGrid {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 0.5rem;
-    padding: 1rem;
+    padding: 6rem 1rem 2.9rem;
   }
   
   /* 모바일에서는 모든 아이템을 1x1로 통일 */
@@ -243,7 +243,7 @@
   .galleryGrid {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 0.25rem;
-    padding: 0.5rem;
+    padding: 5rem 0.5rem 2.9rem;
   }
   
   /* 모바일에서 이미지 컨테이너 비율 통일 */
@@ -296,7 +296,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 1.5rem;
-  padding: 5.8rem 2rem 2.9rem;
+  padding: 7.5rem 2rem 2.9rem;
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;

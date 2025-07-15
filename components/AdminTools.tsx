@@ -12,29 +12,32 @@ export function AdminTools({ className }: AdminToolsProps) {
   const forceRefresh = async () => {
     setIsRefreshing(true)
     setMessage('')
-    
+
     try {
       // Clear browser cache for API calls
       const timestamp = new Date().getTime()
-      
+
       // Force refresh navigation data
-      const navResponse = await fetch(`/api/navigation?t=${timestamp}&force=true`)
+      const navResponse = await fetch(
+        `/api/navigation?t=${timestamp}&force=true`
+      )
       const navData = await navResponse.json()
       console.log('Navigation refresh:', navData)
-      
+
       // Force refresh gallery data
-      const galleryResponse = await fetch(`/api/notion-gallery?t=${timestamp}&force=true`)
+      const galleryResponse = await fetch(
+        `/api/notion-gallery?t=${timestamp}&force=true`
+      )
       const galleryData = await galleryResponse.json()
       console.log('Gallery refresh:', galleryData)
-      
+
       // Show success message before reload
       setMessage('✅ Cache cleared! Reloading page...')
-      
+
       // Delay reload to show message
       setTimeout(() => {
         window.location.reload()
       }, 1000)
-      
     } catch (error) {
       setMessage('❌ Failed to clear cache')
       console.error('Cache refresh error:', error)
@@ -43,8 +46,10 @@ export function AdminTools({ className }: AdminToolsProps) {
   }
 
   // Only show in development or when admin query parameter is present
-  const showAdmin = process.env.NODE_ENV === 'development' || 
-                   (typeof window !== 'undefined' && window.location.search.includes('admin=true'))
+  const showAdmin =
+    process.env.NODE_ENV === 'development' ||
+    (typeof window !== 'undefined' &&
+      window.location.search.includes('admin=true'))
 
   if (!showAdmin) return null
 
@@ -52,8 +57,8 @@ export function AdminTools({ className }: AdminToolsProps) {
     <div className={`${styles.adminTools} ${className || ''}`}>
       <div className={styles.adminPanel}>
         <h3>🔧 Admin Tools</h3>
-        <button 
-          onClick={forceRefresh} 
+        <button
+          onClick={forceRefresh}
           disabled={isRefreshing}
           className={styles.refreshButton}
         >

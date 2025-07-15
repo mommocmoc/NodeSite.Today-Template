@@ -38,6 +38,27 @@
   gap: 1rem;
 }
 
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.desktopNavItem {
+  font-size: 0.95rem;
+  color: var(--gallery-text);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.desktopNavItem:hover {
+  background: var(--gallery-hover);
+  color: var(--gallery-text);
+}
+
 .darkModeToggle {
   display: block;
 }
@@ -46,7 +67,12 @@
   .darkModeToggle {
     display: none;
   }
+  
+  .desktopNav {
+    display: none;
+  }
 }
+
 
 .themeToggle,
 .menuToggle {
@@ -87,10 +113,10 @@
 .overlayContent {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 100vh;
-  padding: 2rem;
+  padding: 10rem 2rem 2rem;
 }
 
 .menuItems {
@@ -166,5 +192,12 @@
   
   .menuItems {
     gap: 1.5rem;
+  }
+}
+
+/* Desktop responsive - must come after mobile styles */
+@media (min-width: 769px) {
+  .menuToggle {
+    display: none !important;
   }
 }

@@ -3,7 +3,7 @@ import { Client } from '@notionhq/client'
 import { NotionAPI } from 'notion-client'
 
 const notion = new Client({
-  auth: process.env.NOTION_API_KEY,
+  auth: process.env.NOTION_API_KEY
 })
 
 const notionClient = new NotionAPI()
@@ -21,7 +21,10 @@ export default async function handler(
   if (isDev) {
     res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate')
   } else {
-    res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600')
+    res.setHeader(
+      'Cache-Control',
+      'public, s-maxage=300, stale-while-revalidate=600'
+    )
   }
 
   try {
@@ -36,12 +39,11 @@ export default async function handler(
 
     res.status(200).json({
       success: true,
-      recordMap,
+      recordMap
     })
-
   } catch (error) {
     console.error('Notion Page API Error:', error)
-    res.status(500).json({ 
+    res.status(500).json({
       success: false,
       message: 'Failed to fetch notion page',
       error: error instanceof Error ? error.message : 'Unknown error'
