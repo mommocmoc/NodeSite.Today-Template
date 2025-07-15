@@ -22,7 +22,7 @@ export function OverlayNavigation({ site }: OverlayNavigationProps) {
         // 캐시 무효화를 위한 타임스탬프 추가
         const timestamp = new Date().getTime()
         const response = await fetch(`/api/navigation?t=${timestamp}`)
-        const data = await response.json() as {
+        const data = (await response.json()) as {
           success: boolean
           items?: NavigationItem[]
           message?: string
@@ -63,29 +63,30 @@ export function OverlayNavigation({ site }: OverlayNavigationProps) {
     <>
       <nav className={styles.nav}>
         <div className={styles.navContent}>
-          <Link href="/" className={styles.logo}>
+          <Link href='/' className={styles.logo}>
             {site?.name || 'NotionDB to Your Site'}
           </Link>
-          
+
           <div className={styles.navControls}>
             {/* Desktop navigation items */}
             <div className={styles.desktopNav}>
-              {!loading && navigationItems.slice(0, 3).map((item) => (
-                <Link
-                  key={item.id}
-                  href={item.urlPath}
-                  className={styles.desktopNavItem}
-                >
-                  {item.displayName}
-                </Link>
-              ))}
+              {!loading &&
+                navigationItems.slice(0, 3).map((item) => (
+                  <Link
+                    key={item.id}
+                    href={item.urlPath}
+                    className={styles.desktopNavItem}
+                  >
+                    {item.displayName}
+                  </Link>
+                ))}
             </div>
-            
-            <DarkModeToggle size="medium" className={styles.darkModeToggle} />
-            <button 
+
+            <DarkModeToggle size='medium' className={styles.darkModeToggle} />
+            <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={styles.menuToggle}
-              aria-label="Toggle menu"
+              aria-label='Toggle menu'
             >
               {isMenuOpen ? '✕' : '☰'}
             </button>
@@ -112,9 +113,9 @@ export function OverlayNavigation({ site }: OverlayNavigationProps) {
                 ))
               )}
             </div>
-            
+
             <div className={styles.menuFooter}>
-              <DarkModeToggle size="large" className={styles.mobileToggle} />
+              <DarkModeToggle size='large' className={styles.mobileToggle} />
             </div>
           </div>
         </div>

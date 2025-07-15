@@ -20,19 +20,19 @@ export function SinglePageView({ pageId, title }: SinglePageViewProps) {
     const fetchPageData = async () => {
       try {
         setLoading(true)
-        
+
         if (!pageId) {
           setError('표시할 페이지가 없습니다.')
           return
         }
 
         const response = await fetch(`/api/notion-page?pageId=${pageId}`)
-        const data = await response.json() as {
+        const data = (await response.json()) as {
           success: boolean
           recordMap?: ExtendedRecordMap
           message?: string
         }
-        
+
         if (data.success && data.recordMap) {
           setRecordMap(data.recordMap)
         } else {
@@ -86,7 +86,7 @@ export function SinglePageView({ pageId, title }: SinglePageViewProps) {
   return (
     <div className={styles.container}>
       <div className={styles.notionWrapper}>
-        <NotionRenderer 
+        <NotionRenderer
           recordMap={recordMap}
           fullPage={false}
           darkMode={false}

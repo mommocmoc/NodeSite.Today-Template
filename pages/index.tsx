@@ -11,19 +11,29 @@ import { domain } from '@/lib/config'
 // Single Page 타입에서 여러 페이지 중 우선순위에 따라 선택하는 함수
 function selectSinglePageByPriority(items: any[]): any {
   // 1. 노출 순서가 있는 페이지들을 우선 정렬
-  const itemsWithOrder = items.filter(item => 
-    item.displayOrder !== undefined && 
-    item.displayOrder !== null && 
-    !isNaN(item.displayOrder)
-  ).sort((a, b) => a.displayOrder - b.displayOrder)
-  
+  const itemsWithOrder = items
+    .filter(
+      (item) =>
+        item.displayOrder !== undefined &&
+        item.displayOrder !== null &&
+        !isNaN(item.displayOrder)
+    )
+    .sort((a, b) => a.displayOrder - b.displayOrder)
+
   // 2. 노출 순서가 없는 페이지들을 최신순으로 정렬
-  const itemsWithoutOrder = items.filter(item => 
-    item.displayOrder === undefined || 
-    item.displayOrder === null || 
-    isNaN(item.displayOrder)
-  ).sort((a, b) => new Date(b.lastEditedTime).getTime() - new Date(a.lastEditedTime).getTime())
-  
+  const itemsWithoutOrder = items
+    .filter(
+      (item) =>
+        item.displayOrder === undefined ||
+        item.displayOrder === null ||
+        isNaN(item.displayOrder)
+    )
+    .sort(
+      (a, b) =>
+        new Date(b.lastEditedTime).getTime() -
+        new Date(a.lastEditedTime).getTime()
+    )
+
   // 3. 우선순위 적용
   if (itemsWithOrder.length > 0) {
     // 노출 순서가 있는 페이지 중 첫 번째 (가장 낮은 숫자)
@@ -43,7 +53,11 @@ interface HomePageProps {
   siteConfig: any
 }
 
-export default function HomePage({ homeCategory, notionPageId, siteConfig }: HomePageProps) {
+export default function HomePage({
+  homeCategory,
+  notionPageId,
+  siteConfig
+}: HomePageProps) {
   const pageTitle = homeCategory?.displayName || 'Home'
   const pageDescription = 'Welcome to our website'
 
@@ -55,22 +69,20 @@ export default function HomePage({ homeCategory, notionPageId, siteConfig }: Hom
         openGraph={{
           title: pageTitle,
           description: pageDescription,
-          type: 'website',
+          type: 'website'
         }}
       />
-      
-      <div className="gallery-layout">
+
+      <div className='gallery-layout'>
         <OverlayNavigation />
-        
+
         {homeCategory?.displayType === 'Single Page' && notionPageId ? (
-          <SinglePageView 
+          <SinglePageView
             pageId={notionPageId}
             title={homeCategory.displayName}
           />
         ) : (
-          <NotionApiGallery 
-            categoryFilter={homeCategory?.id} 
-          />
+          <NotionApiGallery categoryFilter={homeCategory?.id} />
         )}
       </div>
     </>
@@ -84,40 +96,46 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const host = context.req.headers.host
     const protocol = context.req.headers['x-forwarded-proto'] || 'http'
     const baseUrl = `${protocol}://${host}`
-    
+
     const timestamp = new Date().getTime()
     console.log('=== HOME PAGE getServerSideProps ===')
     console.log('baseUrl:', baseUrl)
     console.log('Fetching navigation data...')
-    
-    const navigationResponse = await fetch(`${baseUrl}/api/navigation?t=${timestamp}`)
+
+    const navigationResponse = await fetch(
+      `${baseUrl}/api/navigation?t=${timestamp}`
+    )
     console.log('Navigation response status:', navigationResponse.status)
-    
-    const navigationData = await navigationResponse.json() as {
+
+    const navigationData = (await navigationResponse.json()) as {
       success: boolean
       items?: NavigationItem[]
     }
-    
+
     console.log('Navigation data:', navigationData)
-    
+
     let homeCategory = null
     let notionPageId = null
-    
+
     if (navigationData.success && navigationData.items) {
-      console.log('Available navigation items:', navigationData.items.map(item => ({
-        categoryName: item.categoryName,
-        displayName: item.displayName,
-        displayType: item.displayType,
-        urlPath: item.urlPath
-      })))
-      
-      // Home 카테고리 찾기
-      homeCategory = navigationData.items.find((item: NavigationItem) => 
-        item.categoryName === 'Home' || item.urlPath === '/'
+      console.log(
+        'Available navigation items:',
+        navigationData.items.map((item) => ({
+          categoryName: item.categoryName,
+          displayName: item.displayName,
+          displayType: item.displayType,
+          urlPath: item.urlPath
+        }))
       )
-      
+
+      // Home 카테고리 찾기
+      homeCategory = navigationData.items.find(
+        (item: NavigationItem) =>
+          item.categoryName === 'Home' || item.urlPath === '/'
+      )
+
       console.log('Found home category:', homeCategory)
-      
+
       // Home 카테고리가 없으면 첫 번째 항목 사용
       if (!homeCategory && navigationData.items.length > 0) {
         homeCategory = navigationData.items[0]
@@ -137,34 +155,38 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       }
       console.log('Using fallback home category:', homeCategory)
     }
-      
+
     // Single Page 타입인 경우 노션 페이지 ID 조회
-      if (homeCategory?.displayType === 'Single Page') {
-        console.log('Home category is Single Page type, fetching content...')
-        const contentResponse = await fetch(
-          `${baseUrl}/api/notion-gallery?category=${homeCategory.id}&t=${timestamp}`
-        )
-        console.log('Content response status:', contentResponse.status)
-        
-        const contentData = await contentResponse.json() as {
-          success: boolean
-          items?: any[]
-        }
-        
-        console.log('Content data:', contentData)
-        
-        if (contentData.success && contentData.items && contentData.items.length > 0) {
-          // 페이지 우선순위에 따라 선택
-          const selectedPage = selectSinglePageByPriority(contentData.items)
-          notionPageId = selectedPage.id
-          console.log('Selected page ID for Single Page:', notionPageId)
-        } else {
-          console.error('Failed to fetch content for Single Page:', contentData)
-        }
-      } else {
-        console.log('Home category display type:', homeCategory?.displayType)
+    if (homeCategory?.displayType === 'Single Page') {
+      console.log('Home category is Single Page type, fetching content...')
+      const contentResponse = await fetch(
+        `${baseUrl}/api/notion-gallery?category=${homeCategory.id}&t=${timestamp}`
+      )
+      console.log('Content response status:', contentResponse.status)
+
+      const contentData = (await contentResponse.json()) as {
+        success: boolean
+        items?: any[]
       }
-    
+
+      console.log('Content data:', contentData)
+
+      if (
+        contentData.success &&
+        contentData.items &&
+        contentData.items.length > 0
+      ) {
+        // 페이지 우선순위에 따라 선택
+        const selectedPage = selectSinglePageByPriority(contentData.items)
+        notionPageId = selectedPage.id
+        console.log('Selected page ID for Single Page:', notionPageId)
+      } else {
+        console.error('Failed to fetch content for Single Page:', contentData)
+      }
+    } else {
+      console.log('Home category display type:', homeCategory?.displayType)
+    }
+
     return {
       props: {
         homeCategory,
@@ -182,9 +204,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           isLiteMode: false,
           isRedirectToLoginPage: false,
           isShowSocialMediaButtons: false,
-          isPageANumberedList: false,
+          isPageANumberedList: false
         }
-      },
+      }
     }
   } catch (error) {
     console.error('Error in getServerSideProps:', error)
@@ -214,9 +236,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           isLiteMode: false,
           isRedirectToLoginPage: false,
           isShowSocialMediaButtons: false,
-          isPageANumberedList: false,
+          isPageANumberedList: false
         }
-      },
+      }
     }
   }
 }

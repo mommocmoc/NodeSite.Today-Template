@@ -229,8 +229,7 @@ export function NotionPage({
   const keys = Object.keys(recordMap?.block || {})
   const block = recordMap?.block?.[keys[0]!]?.value
 
-  const isRootPage =
-    pageId === site?.rootNotionPageId
+  const isRootPage = pageId === site?.rootNotionPageId
   const isBlogPost =
     block?.type === 'page' && block?.parent_table === 'collection'
 
@@ -239,34 +238,40 @@ export function NotionPage({
 
   // Always show gallery layout for root page
   const shouldShowGallery = isRootPage
-  
+
   // Get collection data for gallery - check all possible collection sources
   let collectionId = (block as any)?.collection_id
   let collection = null
   let collectionView = null
   let collectionData = null
-  
+
   if (collectionId) {
     collection = recordMap?.collection?.[collectionId]?.value
     const collectionViewId = (block as any)?.view_ids?.[0]
-    collectionView = collectionViewId ? recordMap?.collection_view?.[collectionViewId]?.value : null
-    collectionData = collectionId ? recordMap?.collection_query?.[collectionId]?.[collectionViewId!] : null
+    collectionView = collectionViewId
+      ? recordMap?.collection_view?.[collectionViewId]?.value
+      : null
+    collectionData = collectionId
+      ? recordMap?.collection_query?.[collectionId]?.[collectionViewId!]
+      : null
   }
-  
+
   // If no direct collection, look for collections in the page content
   if (!collection && recordMap?.collection) {
     const collectionIds = Object.keys(recordMap.collection)
     if (collectionIds.length > 0) {
       collectionId = collectionIds[0]
       collection = recordMap.collection[collectionId]?.value
-      
+
       // Find the first collection view
       if (recordMap.collection_view) {
         const viewIds = Object.keys(recordMap.collection_view)
         if (viewIds.length > 0) {
           const viewId = viewIds[0] as string
           collectionView = (recordMap.collection_view as any)?.[viewId]?.value
-          collectionData = (recordMap.collection_query as any)?.[collectionId!]?.[viewId]
+          collectionData = (recordMap.collection_query as any)?.[
+            collectionId!
+          ]?.[viewId]
         }
       }
     }
@@ -344,11 +349,10 @@ export function NotionPage({
         <BodyClassName className='gallery-layout' />
 
         <OverlayNavigation site={site} />
-        
+
         <div className={styles.galleryContainer}>
           <NotionApiGallery databaseId={collectionId} />
         </div>
-
       </>
     )
   }
@@ -393,7 +397,6 @@ export function NotionPage({
         pageAside={pageAside}
         footer={footer}
       />
-
     </>
   )
 }

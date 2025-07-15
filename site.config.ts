@@ -10,7 +10,8 @@ export default siteConfig({
 
   // basic site info (required)
   name: 'NotionDB to Your Site',
-  domain: 'nextjs-notion-starter-kit-git-dynamic-navigation-cowcowwow.vercel.app',
+  domain:
+    'nextjs-notion-starter-kit-git-dynamic-navigation-cowcowwow.vercel.app',
   author: 'NotionDB to Your Site',
 
   // open graph metadata (optional)
