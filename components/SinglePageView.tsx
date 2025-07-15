@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import dynamic from 'next/dynamic'
-import { NotionRenderer } from 'react-notion-x'
 import type { ExtendedRecordMap } from 'notion-types'
+import dynamic from 'next/dynamic'
+import React, { useEffect,useState } from 'react'
+import { NotionRenderer } from 'react-notion-x'
+
 import { mapImageUrl } from '@/lib/map-image-url'
 import { useDarkMode } from '@/lib/use-dark-mode'
+
 import styles from './SinglePageView.module.css'
 
 // Dynamic imports for optional components
@@ -14,14 +16,16 @@ const Collection = dynamic(() =>
 )
 
 // Empty components to avoid react-notion-x warnings
-const EmptyComponent = () => null
+function EmptyComponent() {
+  return null
+}
 
 interface SinglePageViewProps {
   pageId: string
   title: string
 }
 
-export function SinglePageView({ pageId, title }: SinglePageViewProps) {
+export function SinglePageView({ pageId }: Omit<SinglePageViewProps, 'title'>) {
   const [recordMap, setRecordMap] = useState<ExtendedRecordMap | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -58,7 +62,7 @@ export function SinglePageView({ pageId, title }: SinglePageViewProps) {
       }
     }
 
-    fetchPageData()
+    void fetchPageData()
   }, [pageId])
 
   if (loading) {

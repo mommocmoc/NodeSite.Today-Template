@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+
 import { getPage } from '@/lib/notion'
 
 export default async function handler(
@@ -34,12 +35,12 @@ export default async function handler(
       success: true,
       recordMap
     })
-  } catch (error) {
-    console.error('Notion Page API Error:', error)
+  } catch (err) {
+    console.error('Notion Page API Error:', err)
     res.status(500).json({
       success: false,
       message: 'Failed to fetch notion page',
-      error: error instanceof Error ? error.message : 'Unknown error'
+      error: err instanceof Error ? err.message : 'Unknown error'
     })
   }
 }

@@ -9,7 +9,8 @@
       "Bash(prettier:*)",
       "Bash(pnpm prettier:*)",
       "Bash(git merge:*)",
-      "Bash(git branch:*)"
+      "Bash(git branch:*)",
+      "Bash(pnpm eslint:*)"
     ],
     "deny": []
   }
