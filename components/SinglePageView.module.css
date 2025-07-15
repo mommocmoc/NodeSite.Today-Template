@@ -166,7 +166,7 @@
 /* 반응형 디자인 */
 @media (max-width: 768px) {
   .container {
-    padding: 6rem 1rem 2rem;
+    padding: 8rem 1rem 2rem;
   }
   
   .title {
@@ -184,7 +184,7 @@
 
 @media (max-width: 480px) {
   .container {
-    padding: 5rem 1rem 1.5rem;
+    padding: 7rem 1rem 1.5rem;
   }
   
   .title {
