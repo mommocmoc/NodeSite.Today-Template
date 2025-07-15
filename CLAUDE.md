@@ -115,6 +115,7 @@ export default siteConfig({
 ```
 
 **Advanced settings:**
+
 - Database IDs now handled through environment variables only
 - `defaultPageIcon/Cover`: Site-wide defaults for pages
 - `isPreviewImageSupportEnabled`: Enable image optimization
@@ -130,12 +131,14 @@ export default siteConfig({
 - `NOTION_CATEGORY_DB_ID`: Category/navigation database ID
 - `NOTION_CONTENT_DB_ID`: Content database ID
 
+
 **Optional - Performance:**
 - `REDIS_HOST`, `REDIS_PASSWORD`: For caching when `isRedisEnabled: true`
 
 **Quick Setup Example:**
 ```bash
 # .env.local
+
 NOTION_API_KEY=secret_your_integration_token_here
 NOTION_CATEGORY_DB_ID=your_category_database_id_here
 NOTION_CONTENT_DB_ID=your_content_database_id_here
@@ -162,6 +165,7 @@ NOTION_CONTENT_DB_ID=your_content_database_id_here
 - User tracking and analytics
 - Database access validation
 - Request monitoring
+
 
 ## Development Workflow Guidelines
 
