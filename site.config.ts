@@ -9,13 +9,21 @@ export default siteConfig({
   rootNotionSpaceId: null,
 
   // basic site info (required)
-  name: 'NotionDB to Your Site',
-  domain:
+  // 🏠 Site name displayed in the top-left navigation header
+  // Can be overridden with SITE_NAME environment variable
+  name: process.env.SITE_NAME || 'NotionDB to Your Site',
+  // 🌐 Your site's domain for SEO and canonical URLs  
+  // Can be overridden with SITE_DOMAIN environment variable
+  domain: process.env.SITE_DOMAIN ||
     'nextjs-notion-starter-kit-git-dynamic-navigation-cowcowwow.vercel.app',
-  author: 'NotionDB to Your Site',
+  // 👤 Site author name for metadata and SEO
+  // Can be overridden with SITE_AUTHOR environment variable
+  author: process.env.SITE_AUTHOR || 'NotionDB to Your Site',
 
   // open graph metadata (optional)
-  description: 'NotionDB to Your Site',
+  // 📝 Site description for SEO and social media sharing
+  // Can be overridden with SITE_DESCRIPTION environment variable
+  description: process.env.SITE_DESCRIPTION || 'NotionDB to Your Site',
 
   // social usernames (optional)
   // twitter: 'transitive_bs',

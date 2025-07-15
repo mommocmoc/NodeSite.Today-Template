@@ -92,6 +92,60 @@ Optional:
 ### Korean Language Support
 This template has built-in Korean language support with Korean property names in Notion databases and Korean content handling throughout the application.
 
+## Site Configuration
+
+### Basic Site Settings
+**File**: `site.config.ts`
+
+**Essential settings to customize:**
+- `name`: Site name displayed in navigation header (top-left corner)
+- `domain`: Your site's domain for SEO and canonical URLs
+- `author`: Site author name for metadata
+- `description`: Site description for SEO and social sharing
+
+**Example customization:**
+```typescript
+export default siteConfig({
+  name: 'My Portfolio Site',          // ← Navigation header text
+  domain: 'myportfolio.com',
+  author: 'John Doe',
+  description: 'My personal portfolio and blog',
+  // ... other settings
+})
+```
+
+**Advanced settings:**
+- `rootNotionPageId`: Main Notion page ID (required)
+- `defaultPageIcon/Cover`: Site-wide defaults for pages
+- `isPreviewImageSupportEnabled`: Enable image optimization
+- `isRedisEnabled`: Enable caching (production recommended)
+
+### Environment Variables
+**File**: `.env.local`
+
+**Required:**
+- `NOTION_API_KEY`: Notion integration token
+- `NOTION_DATABASE_ID`: Main content database ID
+- `NOTION_NAVIGATION_DB_ID`: Navigation database ID
+
+**Optional - Site Configuration:**
+- `SITE_NAME`: Override site name (navigation header)
+- `SITE_DOMAIN`: Override site domain
+- `SITE_AUTHOR`: Override site author
+- `SITE_DESCRIPTION`: Override site description
+
+**Optional - Performance:**
+- `REDIS_HOST`, `REDIS_PASSWORD`: For caching when `isRedisEnabled: true`
+
+**Quick Setup Example:**
+```bash
+# .env.local
+SITE_NAME="My Amazing Portfolio"
+SITE_DOMAIN="myportfolio.com"
+SITE_AUTHOR="John Doe"
+SITE_DESCRIPTION="Personal portfolio and blog"
+```
+
 ## Development Workflow Guidelines
 
 ### Branch Management
