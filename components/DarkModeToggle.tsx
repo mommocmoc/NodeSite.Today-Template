@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDarkMode } from '@/lib/use-dark-mode'
 import styles from './DarkModeToggle.module.css'
 
@@ -12,22 +12,31 @@ export function DarkModeToggle({
   size = 'medium'
 }: DarkModeToggleProps) {
   const { isDarkMode, toggleDarkMode } = useDarkMode()
+  const [mounted, setMounted] = useState(false)
 
+  // Prevent hydration mismatch by only rendering dark mode state after mount
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Use default light mode state until mounted to prevent hydration mismatch
+  const currentMode = mounted ? isDarkMode : false
+  
   return (
     <button
       onClick={toggleDarkMode}
       className={`${styles.toggleButton} ${styles[size]} ${className || ''}`}
-      aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-      title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+      aria-label={currentMode ? 'Switch to light mode' : 'Switch to dark mode'}
+      title={currentMode ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       <div
-        className={`${styles.toggleTrack} ${isDarkMode ? styles.dark : styles.light}`}
+        className={`${styles.toggleTrack} ${currentMode ? styles.dark : styles.light}`}
       >
         <div
-          className={`${styles.toggleThumb} ${isDarkMode ? styles.darkThumb : styles.lightThumb}`}
+          className={`${styles.toggleThumb} ${currentMode ? styles.darkThumb : styles.lightThumb}`}
         >
           <div className={styles.icon}>
-            {isDarkMode ? (
+            {currentMode ? (
               // Moon icon
               <svg
                 width='14'
