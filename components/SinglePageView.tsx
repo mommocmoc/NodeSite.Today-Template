@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import { NotionRenderer } from 'react-notion-x'
 import type { ExtendedRecordMap } from 'notion-types'
+import { mapImageUrl } from '@/lib/map-image-url'
+import { useDarkMode } from '@/lib/use-dark-mode'
 import styles from './SinglePageView.module.css'
+
+// Dynamic imports for optional components
+const Collection = dynamic(() =>
+  import('react-notion-x/build/third-party/collection').then(
+    (m) => m.Collection
+  )
+)
 
 // Empty components to avoid react-notion-x warnings
 const EmptyComponent = () => null
@@ -15,6 +25,7 @@ export function SinglePageView({ pageId, title }: SinglePageViewProps) {
   const [recordMap, setRecordMap] = useState<ExtendedRecordMap | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const { isDarkMode } = useDarkMode()
 
   useEffect(() => {
     const fetchPageData = async () => {
@@ -89,18 +100,19 @@ export function SinglePageView({ pageId, title }: SinglePageViewProps) {
         <NotionRenderer
           recordMap={recordMap}
           fullPage={false}
-          darkMode={false}
+          darkMode={isDarkMode}
           rootPageId={Object.keys(recordMap.block)[0]}
-          previewImages={true}
+          previewImages={!!recordMap.preview_images}
           showCollectionViewDropdown={false}
           showTableOfContents={false}
           minTableOfContentsItems={99}
           defaultPageIcon={undefined}
           defaultPageCover={undefined}
           defaultPageCoverPosition={0.5}
+          mapImageUrl={mapImageUrl}
           className={styles.notionRenderer}
           components={{
-            Collection: EmptyComponent,
+            Collection,
             Equation: EmptyComponent,
             Modal: EmptyComponent,
             Pdf: EmptyComponent,

@@ -1,12 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { Client } from '@notionhq/client'
-import { NotionAPI } from 'notion-client'
-
-const notion = new Client({
-  auth: process.env.NOTION_API_KEY
-})
-
-const notionClient = new NotionAPI()
+import { getPage } from '@/lib/notion'
 
 export default async function handler(
   req: NextApiRequest,
@@ -34,8 +27,8 @@ export default async function handler(
       return res.status(400).json({ message: 'Page ID is required' })
     }
 
-    // 노션 페이지 recordMap 가져오기
-    const recordMap = await notionClient.getPage(pageId as string)
+    // 노션 페이지 recordMap 가져오기 (완전한 데이터 포함)
+    const recordMap = await getPage(pageId as string)
 
     res.status(200).json({
       success: true,
