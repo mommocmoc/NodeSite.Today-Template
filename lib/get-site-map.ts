@@ -10,14 +10,12 @@ import { notion } from './notion-api'
 const uuid = !!includeNotionIdInUrls
 
 export async function getSiteMap(): Promise<types.SiteMap> {
-  const partialSiteMap = await getAllPages(
-    config.rootNotionPageId,
-    config.rootNotionSpaceId ?? undefined
-  )
-
+  // Simplified site map without rootNotionPageId dependency
+  // Site map is now generated from category and content databases
   return {
     site: config.site,
-    ...partialSiteMap
+    pageMap: {}, // Empty page map as pages are now handled by API endpoints
+    canonicalPageMap: {}
   } as types.SiteMap
 }
 

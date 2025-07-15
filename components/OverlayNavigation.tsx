@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useDarkMode } from '@/lib/use-dark-mode'
+import { site } from '@/lib/config'
 import type { NavigationItem } from '../pages/api/navigation'
 import { DarkModeToggle } from './DarkModeToggle'
 import styles from './OverlayNavigation.module.css'
 
-interface OverlayNavigationProps {
-  site?: any
-}
+interface OverlayNavigationProps {}
 
-export function OverlayNavigation({ site }: OverlayNavigationProps) {
+export function OverlayNavigation({}: OverlayNavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [navigationItems, setNavigationItems] = useState<NavigationItem[]>([])
   const [loading, setLoading] = useState(true)
@@ -35,7 +34,7 @@ export function OverlayNavigation({ site }: OverlayNavigationProps) {
           console.error('Failed to load navigation:', data.message)
           console.error('Navigation API Error Details:', data)
           // 환경 변수 오류인 경우 기본 네비게이션 제공
-          if (data.error === 'MISSING_NAVIGATION_DB_ID') {
+          if (data.error === 'MISSING_CATEGORY_DB_ID') {
             setNavigationItems([
               {
                 id: 'home',
@@ -64,7 +63,7 @@ export function OverlayNavigation({ site }: OverlayNavigationProps) {
       <nav className={styles.nav}>
         <div className={styles.navContent}>
           <Link href='/' className={styles.logo}>
-            {site?.name || 'NotionDB to Your Site'}
+            {site.name}
           </Link>
 
           <div className={styles.navControls}>

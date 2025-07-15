@@ -20,14 +20,10 @@ import {
   type Site
 } from './types'
 
-export const rootNotionPageId: string = parsePageId(
-  getSiteConfig('rootNotionPageId'),
-  { uuid: false }
-)!
-
-if (!rootNotionPageId) {
-  throw new Error('Config error invalid "rootNotionPageId"')
-}
+// Database IDs moved to environment variables
+// These are now handled directly in API endpoints
+export const categoryDbId = process.env.NOTION_CATEGORY_DB_ID
+export const contentDbId = process.env.NOTION_CONTENT_DB_ID
 
 // if you want to restrict pages to a single notion workspace (optional)
 export const rootNotionSpaceId: string | null =
@@ -153,7 +149,6 @@ export const api = {
 export const site: Site = {
   domain,
   name,
-  rootNotionPageId,
   rootNotionSpaceId,
   description
 }

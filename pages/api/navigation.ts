@@ -39,29 +39,25 @@ export default async function handler(
   }
 
   try {
-    const navigationDbId = process.env.NOTION_NAVIGATION_DB_ID
+    const categoryDbId = process.env.NOTION_CATEGORY_DB_ID
 
     console.log('=== Navigation API Debug ===')
     console.log('NODE_ENV:', process.env.NODE_ENV)
-    console.log('NOTION_NAVIGATION_DB_ID:', navigationDbId ? 'Set' : 'Not set')
-    console.log('NOTION_TOKEN:', process.env.NOTION_TOKEN ? 'Set' : 'Not set')
-    console.log(
-      'NOTION_API_KEY:',
-      process.env.NOTION_API_KEY ? 'Set' : 'Not set'
-    )
+    console.log('NOTION_CATEGORY_DB_ID:', categoryDbId ? 'Set' : 'Not set')
+    console.log('NOTION_API_KEY:', process.env.NOTION_API_KEY ? 'Set' : 'Not set')
 
-    if (!navigationDbId) {
-      console.error('Missing NOTION_NAVIGATION_DB_ID environment variable')
+    if (!categoryDbId) {
+      console.error('Missing NOTION_CATEGORY_DB_ID environment variable')
       return res.status(400).json({
         message:
-          'Navigation Database ID is required. Set NOTION_NAVIGATION_DB_ID environment variable.',
-        error: 'MISSING_NAVIGATION_DB_ID'
+          'Category Database ID is required. Set NOTION_CATEGORY_DB_ID environment variable.',
+        error: 'MISSING_CATEGORY_DB_ID'
       })
     }
 
-    // 네비게이션 설정 DB 쿼리
+    // 카테고리 DB 쿼리
     const response = await notion.databases.query({
-      database_id: navigationDbId,
+      database_id: categoryDbId,
       filter: {
         property: '활성화',
         checkbox: {

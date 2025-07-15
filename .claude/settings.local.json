@@ -11,7 +11,13 @@
       "Bash(git merge:*)",
       "Bash(git branch:*)",
       "Bash(pnpm eslint:*)",
-      "Bash(git reset:*)"
+      "Bash(git reset:*)",
+      "Bash(npm run lint)",
+      "Bash(rg:*)",
+      "Bash(npm run build:*)",
+      "WebFetch(domain:developers.notion.com)",
+      "WebFetch(domain:docs.github.com)",
+      "WebFetch(domain:vercel.com)"
     ],
     "deny": []
   }
