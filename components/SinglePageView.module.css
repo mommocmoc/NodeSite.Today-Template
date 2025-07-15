@@ -163,6 +163,39 @@
   display: none;
 }
 
+/* Hide page properties in single page view */
+.notionWrapper :global(.notion-page-properties) {
+  display: none !important;
+}
+
+.notionWrapper :global(.notion-property) {
+  display: none !important;
+}
+
+.notionWrapper :global(.notion-property-title) {
+  display: none !important;
+}
+
+.notionWrapper :global(.notion-property-date) {
+  display: none !important;
+}
+
+.notionWrapper :global(.notion-property-number) {
+  display: none !important;
+}
+
+.notionWrapper :global(.notion-property-select) {
+  display: none !important;
+}
+
+.notionWrapper :global(.notion-property-multi_select) {
+  display: none !important;
+}
+
+.notionWrapper :global(.notion-property-relation) {
+  display: none !important;
+}
+
 /* 반응형 디자인 */
 @media (max-width: 768px) {
   .container {
