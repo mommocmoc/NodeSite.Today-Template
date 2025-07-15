@@ -163,45 +163,8 @@
   display: none;
 }
 
-/* Hide page properties in single page view */
-.notionWrapper :global(.notion-page-properties) {
-  display: none !important;
-}
-
-.notionWrapper :global(.notion-property) {
-  display: none !important;
-}
-
-.notionWrapper :global(.notion-property-title) {
-  display: none !important;
-}
-
-.notionWrapper :global(.notion-property-date) {
-  display: none !important;
-}
-
-.notionWrapper :global(.notion-property-number) {
-  display: none !important;
-}
-
-.notionWrapper :global(.notion-property-select) {
-  display: none !important;
-}
-
-.notionWrapper :global(.notion-property-multi_select) {
-  display: none !important;
-}
-
-.notionWrapper :global(.notion-property-relation) {
-  display: none !important;
-}
-
-/* Hide horizontal rule/divider above title */
-.notionWrapper :global(.notion-hr) {
-  display: none !important;
-}
-
-.notionWrapper :global(.notion-collection-row-title) + :global(.notion-divider) {
+/* Hide collection page properties in single page view */
+.notionWrapper :global(.notion-collection-page-properties) {
   display: none !important;
 }
 
