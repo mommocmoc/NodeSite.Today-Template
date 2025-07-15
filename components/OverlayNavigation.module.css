@@ -73,11 +73,6 @@
   }
 }
 
-@media (min-width: 769px) {
-  .menuToggle {
-    display: none;
-  }
-}
 
 .themeToggle,
 .menuToggle {
@@ -197,5 +192,12 @@
   
   .menuItems {
     gap: 1.5rem;
+  }
+}
+
+/* Desktop responsive - must come after mobile styles */
+@media (min-width: 769px) {
+  .menuToggle {
+    display: none !important;
   }
 }
