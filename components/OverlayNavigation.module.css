@@ -73,6 +73,12 @@
   }
 }
 
+@media (min-width: 769px) {
+  .menuToggle {
+    display: none;
+  }
+}
+
 .themeToggle,
 .menuToggle {
   background: none;
