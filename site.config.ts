@@ -1,29 +1,25 @@
 import { siteConfig } from './lib/site-config'
 
 export default siteConfig({
-  // the site's root Notion page (required)
-  rootNotionPageId: '21882599071b80168c50e133592c764b',
-
+  // Database configurations moved to environment variables
+  // Set NOTION_CATEGORY_DB_ID and NOTION_CONTENT_DB_ID in .env.local
+  
   // if you want to restrict pages to a single notion workspace (optional)
   // (this should be a Notion ID; see the docs for how to extract this)
   rootNotionSpaceId: null,
 
   // basic site info (required)
   // 🏠 Site name displayed in the top-left navigation header
-  // Can be overridden with SITE_NAME environment variable
-  name: process.env.SITE_NAME || 'NotionDB to Your Site',
+  name: 'Your Site',
   // 🌐 Your site's domain for SEO and canonical URLs  
-  // Can be overridden with SITE_DOMAIN environment variable
-  domain: process.env.SITE_DOMAIN ||
-    'nextjs-notion-starter-kit-git-dynamic-navigation-cowcowwow.vercel.app',
+  domain:
+    'yoursite.domain',
   // 👤 Site author name for metadata and SEO
-  // Can be overridden with SITE_AUTHOR environment variable
-  author: process.env.SITE_AUTHOR || 'NotionDB to Your Site',
+  author: 'Your Name',
 
   // open graph metadata (optional)
   // 📝 Site description for SEO and social media sharing
-  // Can be overridden with SITE_DESCRIPTION environment variable
-  description: process.env.SITE_DESCRIPTION || 'NotionDB to Your Site',
+  description: 'Your Site Description',
 
   // social usernames (optional)
   // twitter: 'transitive_bs',

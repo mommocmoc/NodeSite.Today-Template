@@ -84,10 +84,13 @@ export async function resolveNotionPage(
       }
     }
   } else {
-    pageId = site.rootNotionPageId
-
-    console.log(site)
-    recordMap = await getPage(pageId)
+    // No root page concept - redirect to home or show default content
+    return {
+      error: {
+        message: 'Page not found. Please access content through navigation.',
+        statusCode: 404
+      }
+    }
   }
 
   const props: PageProps = { site, recordMap, pageId }

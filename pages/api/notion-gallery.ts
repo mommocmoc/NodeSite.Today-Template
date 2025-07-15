@@ -29,19 +29,20 @@ export default async function handler(
   }
 
   try {
-    // 환경변수를 우선으로 사용, 없으면 쿼리 파라미터 사용
-    const databaseId = process.env.NOTION_DATABASE_ID || req.query.databaseId
+    // 콘텐츠 DB ID 사용
+    const contentDbId = process.env.NOTION_CONTENT_DB_ID
     const category = req.query.category as string
 
     console.log('=== Notion Gallery API Debug ===')
     console.log('NODE_ENV:', process.env.NODE_ENV)
-    console.log('NOTION_DATABASE_ID:', databaseId ? 'Set' : 'Not set')
+    console.log('NOTION_CONTENT_DB_ID:', contentDbId ? 'Set' : 'Not set')
     console.log('Category filter:', category)
 
-    if (!databaseId) {
+    if (!contentDbId) {
       return res.status(400).json({
         message:
-          'Database ID is required. Set NOTION_DATABASE_ID environment variable or provide databaseId query parameter.'
+          'Content Database ID is required. Set NOTION_CONTENT_DB_ID environment variable.',
+        error: 'MISSING_CONTENT_DB_ID'
       })
     }
 
@@ -72,7 +73,7 @@ export default async function handler(
 
     // Notion API를 사용해서 데이터베이스 쿼리 (페이지 크기 제한으로 성능 향상)
     const queryOptions: any = {
-      database_id: databaseId as string,
+      database_id: contentDbId as string,
       page_size: 50, // 한 번에 최대 50개만 로드
       sorts: [
         {

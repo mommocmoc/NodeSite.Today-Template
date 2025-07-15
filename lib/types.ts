@@ -33,7 +33,6 @@ export interface Site {
   name: string
   domain: string
 
-  rootNotionPageId: string
   rootNotionSpaceId: string | null
 
   // settings

@@ -24,7 +24,7 @@ export default async function OGImage(
 ) {
   const { searchParams } = new URL(req.url!)
   const pageId = parsePageId(
-    searchParams.get('id') || libConfig.rootNotionPageId
+    searchParams.get('id') || '' // No default page ID
   )
   if (!pageId) {
     return new Response('Invalid notion page id', { status: 400 })

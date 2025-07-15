@@ -46,8 +46,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     const parentPage = getBlockParentPage(block, recordMap)
     const isBlogPost =
       block.type === 'page' &&
-      block.parent_table === 'collection' &&
-      parentPage?.id === idToUuid(config.rootNotionPageId)
+      block.parent_table === 'collection'
+      // All collection pages are considered blog posts in simplified structure
     if (!isBlogPost) {
       continue
     }

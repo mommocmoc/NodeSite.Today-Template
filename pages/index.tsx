@@ -79,7 +79,6 @@ export default function HomePage({
         {homeCategory?.displayType === 'Single Page' && notionPageId ? (
           <SinglePageView
             pageId={notionPageId}
-            title={homeCategory.displayName}
           />
         ) : (
           <NotionApiGallery categoryFilter={homeCategory?.id} />

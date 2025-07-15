@@ -115,7 +115,8 @@ export default siteConfig({
 ```
 
 **Advanced settings:**
-- `rootNotionPageId`: Main Notion page ID (required)
+
+- Database IDs now handled through environment variables only
 - `defaultPageIcon/Cover`: Site-wide defaults for pages
 - `isPreviewImageSupportEnabled`: Enable image optimization
 - `isRedisEnabled`: Enable caching (production recommended)
@@ -123,16 +124,13 @@ export default siteConfig({
 ### Environment Variables
 **File**: `.env.local`
 
+**🎯 Simplified Setup - Only 3 variables needed!**
+
 **Required:**
 - `NOTION_API_KEY`: Notion integration token
-- `NOTION_DATABASE_ID`: Main content database ID
-- `NOTION_NAVIGATION_DB_ID`: Navigation database ID
+- `NOTION_CATEGORY_DB_ID`: Category/navigation database ID
+- `NOTION_CONTENT_DB_ID`: Content database ID
 
-**Optional - Site Configuration:**
-- `SITE_NAME`: Override site name (navigation header)
-- `SITE_DOMAIN`: Override site domain
-- `SITE_AUTHOR`: Override site author
-- `SITE_DESCRIPTION`: Override site description
 
 **Optional - Performance:**
 - `REDIS_HOST`, `REDIS_PASSWORD`: For caching when `isRedisEnabled: true`
@@ -140,11 +138,34 @@ export default siteConfig({
 **Quick Setup Example:**
 ```bash
 # .env.local
-SITE_NAME="My Amazing Portfolio"
-SITE_DOMAIN="myportfolio.com"
-SITE_AUTHOR="John Doe"
-SITE_DESCRIPTION="Personal portfolio and blog"
+
+NOTION_API_KEY=secret_your_integration_token_here
+NOTION_CATEGORY_DB_ID=your_category_database_id_here
+NOTION_CONTENT_DB_ID=your_content_database_id_here
 ```
+
+**🚀 Ultra-Simple Setup Process:**
+
+### Method 1: Central Integration Service (Recommended)
+1. **Get invited as guest** to Notion workspace
+2. **Copy database IDs** from shared databases (2 IDs)
+3. **Get your unique User ID** from template provider
+4. **Set 3 environment variables** (no token needed!)
+5. **Deploy instantly!**
+
+### Method 2: Traditional Setup
+1. Create your own Notion Integration
+2. Get integration token
+3. Copy database IDs
+4. Set environment variables
+5. Deploy
+
+**🔒 Security Features:**
+- Rate limiting (100 requests/hour for free tier)
+- User tracking and analytics
+- Database access validation
+- Request monitoring
+
 
 ## Development Workflow Guidelines
 

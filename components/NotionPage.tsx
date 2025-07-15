@@ -229,7 +229,8 @@ export function NotionPage({
   const keys = Object.keys(recordMap?.block || {})
   const block = recordMap?.block?.[keys[0]!]?.value
 
-  const isRootPage = pageId === site?.rootNotionPageId
+  // Root page concept removed - all pages are handled uniformly
+  const isRootPage = false
   const isBlogPost =
     block?.type === 'page' && block?.parent_table === 'collection'
 
@@ -304,7 +305,7 @@ export function NotionPage({
     isDev: config.isDev,
     title,
     pageId,
-    rootNotionPageId: site.rootNotionPageId,
+    // rootNotionPageId removed from simplified structure
     recordMap
   })
 
@@ -348,7 +349,7 @@ export function NotionPage({
         {isDarkMode && <BodyClassName className='dark-mode' />}
         <BodyClassName className='gallery-layout' />
 
-        <OverlayNavigation site={site} />
+        <OverlayNavigation />
 
         <div className={styles.galleryContainer}>
           <NotionApiGallery databaseId={collectionId} />
@@ -371,17 +372,17 @@ export function NotionPage({
       {isLiteMode && <BodyClassName className='notion-lite' />}
       {isDarkMode && <BodyClassName className='dark-mode' />}
 
-      <OverlayNavigation site={site} />
+      <OverlayNavigation />
 
       <NotionRenderer
         bodyClassName={cs(
-          styles.notion,
-          pageId === site.rootNotionPageId && 'index-page'
+          styles.notion
+          // index-page class removed as root page concept is deprecated
         )}
         darkMode={isDarkMode}
         components={components}
         recordMap={recordMap}
-        rootPageId={site.rootNotionPageId}
+        // rootPageId removed as root page concept is deprecated
         rootDomain={site.domain}
         fullPage={!isLiteMode}
         previewImages={!!recordMap.preview_images}

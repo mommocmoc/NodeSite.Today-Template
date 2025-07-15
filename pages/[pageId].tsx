@@ -257,7 +257,6 @@ export default function DynamicPage({
           {category.displayType === 'Single Page' && notionPageId ? (
             <SinglePageView
               pageId={notionPageId}
-              title={category.displayName}
             />
           ) : (
             <NotionApiGallery categoryFilter={category.id} />
