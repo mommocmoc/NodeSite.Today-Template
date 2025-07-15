@@ -196,6 +196,15 @@
   display: none !important;
 }
 
+/* Hide horizontal rule/divider above title */
+.notionWrapper :global(.notion-hr) {
+  display: none !important;
+}
+
+.notionWrapper :global(.notion-collection-row-title) + :global(.notion-divider) {
+  display: none !important;
+}
+
 /* 반응형 디자인 */
 @media (max-width: 768px) {
   .container {
