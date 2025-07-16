@@ -17,7 +17,8 @@
       "Bash(npm run build:*)",
       "WebFetch(domain:developers.notion.com)",
       "WebFetch(domain:docs.github.com)",
-      "WebFetch(domain:vercel.com)"
+      "WebFetch(domain:vercel.com)",
+      "Bash(npm install:*)"
     ],
     "deny": []
   }
