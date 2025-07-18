@@ -12,29 +12,20 @@
   --notion-header-height: 54px;
 }
 
-/* Refined minimal color palette */
-:root {
-  --gallery-bg: #fdfdfd;
-  --gallery-text: #111111;
-  --gallery-text-secondary: #555555;
-  --gallery-border: #eeeeee;
-  --gallery-hover: #f8f8f8;
-  --gallery-accent: rgba(171, 255, 88, 0.08);
-  --gallery-accent-text: rgba(171, 255, 88, 0.9);
-}
-
-.dark-mode {
-  --gallery-bg: #070707;
-  --gallery-text: #f8f8f8;
-  --gallery-text-secondary: #999999;
-  --gallery-border: #1a1a1a;
-  --gallery-hover: #111111;
-  --gallery-accent: rgba(171, 255, 88, 0.05);
-  --gallery-accent-text: rgba(171, 255, 88, 0.8);
-}
 
 /* Gallery layout overrides */
 .gallery-layout {
+  background: var(--gallery-bg) !important;
+  color: var(--gallery-text) !important;
+}
+
+/* 강제 배경색 적용 (react-notion-x 덮어쓰기) */
+.notion-page,
+.notion-page-content,
+.notion-frame,
+.notion-frame > *,
+.notion-app,
+.notion-app-inner {
   background: var(--gallery-bg) !important;
   color: var(--gallery-text) !important;
 }

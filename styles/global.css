@@ -15,11 +15,11 @@ html {
 
 :root {
   /* Light mode colors */
-  --gallery-bg: #ffffff;
-  --gallery-text: #222222;
-  --gallery-text-secondary: #666666;
-  --gallery-border: #e1e5e9;
-  --gallery-accent: #f5f7fa;
+  --gallery-bg: #fdfdfd;
+  --gallery-text: #111111;
+  --gallery-text-secondary: #555555;
+  --gallery-border: #eeeeee;
+  --gallery-accent: #f8f8f8;
   --gallery-accent-text: #000000;
   --gallery-card-bg: #ffffff;
   --gallery-card-shadow: rgba(0, 0, 0, 0.1);
@@ -30,14 +30,14 @@ html {
 .dark-mode {
   /* Dark mode colors */
   --gallery-bg: #0a0a0a;
-  --gallery-text: #e4e4e4;
-  --gallery-text-secondary: #a1a1a1;
-  --gallery-border: #2a2a2a;
-  --gallery-accent: #1a1a1a;
+  --gallery-text: #f8f8f8;
+  --gallery-text-secondary: #999999;
+  --gallery-border: #1a1a1a;
+  --gallery-accent: #111111;
   --gallery-accent-text: #ffffff;
   --gallery-card-bg: #111111;
   --gallery-card-shadow: rgba(255, 255, 255, 0.1);
-  --gallery-overlay-bg: rgba(7, 7, 7, 0.95);
+  --gallery-overlay-bg: rgba(10, 10, 10, 0.95);
   --gallery-hover: rgba(255, 255, 255, 0.1);
 }
 

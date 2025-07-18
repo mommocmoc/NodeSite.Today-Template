@@ -3,8 +3,8 @@
   margin: 0 auto;
   padding: 8rem 2rem 4rem;
   min-height: 100vh;
-  background-color: var(--gallery-bg);
-  color: var(--gallery-text);
+  background-color: var(--gallery-bg) !important;
+  color: var(--gallery-text) !important;
 }
 
 .loading {
@@ -52,8 +52,8 @@
 }
 
 .pageSection {
-  background: var(--gallery-bg);
-  color: var(--gallery-text);
+  background: var(--gallery-bg) !important;
+  color: var(--gallery-text) !important;
 }
 
 .pageDivider {
@@ -64,8 +64,8 @@
 }
 
 .notionWrapper {
-  background: var(--gallery-bg);
-  color: var(--gallery-text);
+  background: var(--gallery-bg) !important;
+  color: var(--gallery-text) !important;
 }
 
 .notionRenderer {
@@ -76,8 +76,8 @@
 .notionWrapper :global(.notion-page) {
   padding: 0;
   margin: 0;
-  background: transparent;
-  color: var(--gallery-text);
+  background: var(--gallery-bg) !important;
+  color: var(--gallery-text) !important;
 }
 
 .notionWrapper :global(.notion-title) {
